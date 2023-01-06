@@ -144,15 +144,16 @@ while carryOn3:
         B.f = -B.f
         B.fy= -B.fy
         point+=1
-        pg.time.wait(20)
         fix=0
-        while True:
-            if P.collidepoint(B.x,B.y+ B.r):
-                fix+=1
-                P.move_ip(0,10)
-            else:
-                P.move_ip(0,-fix*10)
-                break
+        # ****************************  
+        # fix-en på flere treff i et mål, hvor de gjenstandene bevegr fra hverandre basert på konstanten k
+        k=7
+        while P.collidepoint(B.x,B.y+ B.r+k):
+            fix+=1
+            P.move_ip(0,15)
+        P.move_ip(0,fix*-15)
+        #******************************
+
     if (B.y+B.r) >= S.get_height():    
         game_over=font.render("du tapte", True, (50,255,50))
         S.blit(game_over, (350,160))
